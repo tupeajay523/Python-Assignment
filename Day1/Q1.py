@@ -1,3 +1,3 @@
-# Q1. Print "hello world"
+# Q1 Write a Python program that prints "Hello, World!" to the console.
 
-print("Hello World")
+print("Hello, World!")
