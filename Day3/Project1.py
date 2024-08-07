@@ -48,7 +48,7 @@ try:
     # Create a DF
     df = pd.DataFrame(arr_data)
 
-    # Save DF to a CSV 
+    # Save DF to a CSV git
     output_file = "vegetable_prices_karnataka.csv"
     df.to_csv(output_file, index=False)
 
