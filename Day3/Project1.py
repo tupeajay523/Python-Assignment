@@ -3,10 +3,10 @@ import pandas as pd
 import json
 
 # URL of the API endpoint
-state = "karnataka"  # State set to Karnataka
+state = "karnataka"  
 url = f"https://vegetablemarketprice.com/api/dataapi/market/{state}/daywisedata?date=2024-08-06"
 
-# Headers for the HTTP request
+
 headers = {
     "accept": "application/json",
     "accept-language": "en-US,en;q=0.9",
@@ -14,15 +14,15 @@ headers = {
 }
 
 try:
-    # Fetch the data from the API
+    # Fetch  data from the API
     response = requests.get(url, headers=headers)
-    response.raise_for_status()  # Raise an error for bad responses
+    response.raise_for_status() 
 
     # Parse the JSON response
     js_data = response.json()
-    print(json.dumps(js_data, indent=2))  # Print JSON data for debugging
+    print(json.dumps(js_data, indent=2)) 
 
-    # Extract and structure the data
+    # Extract & structure the data
     arr_data = []
     for api in js_data.get("data", []):
         veg_id = str(api.get("id", ""))
@@ -31,10 +31,10 @@ try:
         retail_price = str(api.get("retailprice", ""))
         shoping_mall_price = str(api.get("shopingmallprice", ""))
         unit_val = str(api.get("units", ""))
-        veg_image = str(api.get("vegetableimage", ""))  # Get the vegetable image if available
+        veg_image = str(api.get("vegetableimage", ""))  
 
         new_js = {
-            "Date": "2024-08-06",  # Update with the actual date if needed
+            "Date": "2024-08-06",  
             "State Name": state,
             "Vegetable Name": veg_name,
             "Wholesale Price": whole_price,
@@ -45,10 +45,10 @@ try:
         }
         arr_data.append(new_js)
 
-    # Create a DataFrame from the structured data
+    # Create a DF
     df = pd.DataFrame(arr_data)
 
-    # Save the DataFrame to a CSV file
+    # Save DF to a CSV 
     output_file = "vegetable_prices_karnataka.csv"
     df.to_csv(output_file, index=False)
 
